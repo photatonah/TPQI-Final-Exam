@@ -7,6 +7,7 @@ public class EnemyClass : MonoBehaviour
     private float speed;
     private bool isHit = false;
     private Renderer rend;
+    public GameObject enemyModelPivot;
 
     void Start()
     {
@@ -33,8 +34,17 @@ public class EnemyClass : MonoBehaviour
     {
         if (!isHit && target != null)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
+            // find the distance between the enemy and the target
+            Vector3 distance = target.position - transform.position;
+
+            // normalize the distance vector to get the direction
+            Vector3 direction = distance.normalized;
+
+            // move the enemy towards the target
             transform.position += direction * speed * Time.deltaTime;
+
+            // Rotate towards the target
+            enemyModelPivot.transform.LookAt(target.position);
         }
     }
 
