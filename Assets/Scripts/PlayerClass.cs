@@ -58,6 +58,8 @@ public class PlayerClass : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             FindObjectOfType<MainLogic>()?.GetDamage();
+
+            other.GetComponent<EnemyClass>()?.DestroyShip();
         }
     }
 }

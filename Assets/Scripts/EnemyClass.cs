@@ -66,16 +66,25 @@ public class EnemyClass : MonoBehaviour
         if (!isHit && other.CompareTag("Bullet"))
         {
             FindObjectOfType<MainLogic>()?.AddScore();
-            isHit = true;
-            Destroy(gameObject, 2f);
-            //StartCoroutine(FlashRedAndDestroy());
 
-            // Instantiate explosion effect
-            if (explosionFXPrefab != null)
-            {
-                GameObject explosionFX = Instantiate(explosionFXPrefab, transform.position, Quaternion.identity);
-                Destroy(explosionFX, 2f); // Destroy the explosion effect after 2 seconds
-            }
+            // call the function to destroy the ship
+            // and play the explosion effect
+            DestroyShip();
+        }
+    }
+
+    public void DestroyShip()
+    {
+        isHit = true;
+        
+        Destroy(gameObject, 2f);
+        //StartCoroutine(FlashRedAndDestroy());
+
+        // Instantiate explosion effect
+        if (explosionFXPrefab != null)
+        {
+            GameObject explosionFX = Instantiate(explosionFXPrefab, transform.position, Quaternion.identity);
+            Destroy(explosionFX, 2f); // Destroy the explosion effect after 2 seconds
         }
     }
 

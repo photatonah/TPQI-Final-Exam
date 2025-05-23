@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class GameOverClass : MonoBehaviour
 {
-    public string sceneName = "GameScene";
+    private string sceneName = "Title";
     void Start()
     {
         GameObject btnObj = GameObject.Find("ButtonGamOver");

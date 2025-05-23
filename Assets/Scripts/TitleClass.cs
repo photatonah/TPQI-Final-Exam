@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleClass : MonoBehaviour
 {
-    public string sceneName = "GameScene"; // เปลี่ยนชื่อ scene ได้จาก Inspector
+    public string sceneName = "Game"; // เปลี่ยนชื่อ scene ได้จาก Inspector
 
     void Start()
     {
