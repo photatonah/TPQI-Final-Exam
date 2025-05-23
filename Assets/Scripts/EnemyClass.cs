@@ -5,9 +5,11 @@ public class EnemyClass : MonoBehaviour
 {
     private Transform target;
     private float speed;
+    private float fallingSpeed = 10f;
     private bool isHit = false;
     private Renderer rend;
     public GameObject enemyModelPivot;
+    public GameObject explosionFXPrefab;
 
     void Start()
     {
@@ -46,6 +48,17 @@ public class EnemyClass : MonoBehaviour
             // Rotate towards the target
             enemyModelPivot.transform.LookAt(target.position);
         }
+        else if (isHit)
+        {
+            // If hit, stop moving
+            speed = 0f;
+
+            // Move the enemy ship downwards
+            transform.position += Vector3.down * fallingSpeed * Time.deltaTime;
+
+            // Rotate the enemy ship
+            transform.Rotate(Vector3.forward * 180f * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,7 +67,15 @@ public class EnemyClass : MonoBehaviour
         {
             FindObjectOfType<MainLogic>()?.AddScore();
             isHit = true;
-            StartCoroutine(FlashRedAndDestroy());
+            Destroy(gameObject, 2f);
+            //StartCoroutine(FlashRedAndDestroy());
+
+            // Instantiate explosion effect
+            if (explosionFXPrefab != null)
+            {
+                GameObject explosionFX = Instantiate(explosionFXPrefab, transform.position, Quaternion.identity);
+                Destroy(explosionFX, 2f); // Destroy the explosion effect after 2 seconds
+            }
         }
     }
 

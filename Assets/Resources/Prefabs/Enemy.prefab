@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyModelPivot: {fileID: 4301323722719110507}
+  explosionFXPrefab: {fileID: 2867508169557365437, guid: 4dbf34e03e63e46a79971ad4a7dc10a7, type: 3}
 --- !u!1 &4301323722719110507
 GameObject:
   m_ObjectHideFlags: 0
